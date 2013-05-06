@@ -1,0 +1,5 @@
+<%- if @environment -%>
+export NODE_ENV=<%= @environment %>
+<%- else -%>
+# export NODE_ENV=production
+<%- end -%>
