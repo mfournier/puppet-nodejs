@@ -1,0 +1,11 @@
+<% if @sudo_nodejs_admin_user -%>
+User_Alias NODEJS_ADMIN = %nodejs-admin,<%= sudo_nodejs_admin_user %>
+<% else -%>
+User_Alias NODEJS_ADMIN = %nodejs-admin
+<% end -%>
+<% if @sudo_nodejs_admin_cmnd -%>
+Cmnd_Alias NODEJS_ADMIN = <%= sudo_nodejs_admin_cmnd %>
+<% else -%>
+Cmnd_Alias NODEJS_ADMIN = /etc/init.d/nodejs-*
+<% end -%>
+NODEJS_ADMIN ALL=(nodejs) ALL : ALL=(root) NODEJS_ADMIN

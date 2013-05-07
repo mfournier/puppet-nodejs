@@ -21,6 +21,7 @@ define nodejs::instance(
   $user = 'nodejs',
   $root_dir = '/var/lib/nodejs',
   $script = 'app.js',
+  $environment = undef,
 ) {
 
   user{$user:
@@ -41,6 +42,13 @@ define nodejs::instance(
     mode    => '0756',
     content => template('nodejs/nodejs.init.erb'),
   }
+  file{"/etc/default/nodejs-${name}":
+    ensure  => $ensure,
+    owner   => $user,
+    group   => $user,
+    mode    => '0644',
+    content => template('nodejs/nodejs.default.erb'),
+  } ~> Service["nodejs-${name}"]
 
   $root_dir_ensure = $ensure ? { 'present' => 'directory', default => 'absent' }
   file{$root_dir:
