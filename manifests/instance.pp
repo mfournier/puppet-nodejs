@@ -35,6 +35,13 @@ define nodejs::instance(
     system => true,
   }
 
+  file{"${root_dir}/log":
+    ensure => 'directory',
+    owner  => $user,
+    group  => $user,
+    mode   => '0755',
+  }
+
   file{"/etc/init.d/nodejs-${name}":
     ensure  => $ensure,
     owner   => 'root',
