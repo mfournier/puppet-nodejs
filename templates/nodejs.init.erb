@@ -14,6 +14,7 @@ DAEMON=/usr/bin/node
 USER=<%= @user %>
 ROOT_DIR=<%= @root_dir %>
 SCRIPT=$ROOT_DIR/<%= @script %>
+OPTIONS="<%= @options %>"
 LOGFILE=<%= @root_dir %>/logs/<%= @script %>_log.log
 ERRFILE=<%= @root_dir %>/logs/<%= @script %>_err.log
 
@@ -29,7 +30,7 @@ case $1 in
   start)
     echo -n "Starting $NAME"
 
-    start_daemon -u $USER "$DAEMON $SCRIPT > $LOGFILE 2> $ERRFILE &" 
+    start_daemon -u $USER "$DAEMON $SCRIPT $OPTIONS > $LOGFILE 2> $ERRFILE &"
 
     RETVAL=$?
 

@@ -21,6 +21,7 @@ define nodejs::instance(
   $user = 'nodejs',
   $root_dir = '/var/lib/nodejs',
   $script = 'app.js',
+  $options = undef,
   $env = undef,
 ) {
 
