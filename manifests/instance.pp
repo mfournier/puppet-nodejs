@@ -35,7 +35,7 @@ define nodejs::instance(
     system => true,
   }
 
-  file{"${root_dir}/log":
+  file{"${root_dir}/logs":
     ensure => 'directory',
     owner  => $user,
     group  => $user,
